@@ -18,6 +18,8 @@
 		49DBFD881E80403E00900003 /* TwoImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DBFD861E80403E00900003 /* TwoImageCell.xib */; };
 		49DBFD8D1E80409900900003 /* SidewaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DBFD8B1E80409900900003 /* SidewaysCell.swift */; };
 		49DBFD8E1E80409900900003 /* SidewaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DBFD8C1E80409900900003 /* SidewaysCell.xib */; };
+		49FF0D2E1E806EB400F0312C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF0D2D1E806EB400F0312C /* APIManager.swift */; };
+		49FF0D301E806EBC00F0312C /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF0D2F1E806EBC00F0312C /* Article.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		49DBFD861E80403E00900003 /* TwoImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoImageCell.xib; sourceTree = "<group>"; };
 		49DBFD8B1E80409900900003 /* SidewaysCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidewaysCell.swift; path = ../SidewaysCell.swift; sourceTree = "<group>"; };
 		49DBFD8C1E80409900900003 /* SidewaysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SidewaysCell.xib; path = ../SidewaysCell.xib; sourceTree = "<group>"; };
+		49FF0D2D1E806EB400F0312C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		49FF0D2F1E806EBC00F0312C /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 			children = (
 				49DBFD6F1E80398F00900003 /* AppDelegate.swift */,
 				49DBFD711E80398F00900003 /* ViewController.swift */,
+				49FF0D2D1E806EB400F0312C /* APIManager.swift */,
+				49FF0D2F1E806EBC00F0312C /* Article.swift */,
 				49DBFD731E80399000900003 /* Main.storyboard */,
 				49DBFD8F1E8040B300900003 /* TableViewCells */,
 				49DBFD761E80399000900003 /* Assets.xcassets */,
@@ -166,6 +172,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49FF0D301E806EBC00F0312C /* Article.swift in Sources */,
+				49FF0D2E1E806EB400F0312C /* APIManager.swift in Sources */,
 				49DBFD831E80402100900003 /* OneImageCell.swift in Sources */,
 				49DBFD721E80398F00900003 /* ViewController.swift in Sources */,
 				49DBFD871E80403E00900003 /* TwoImageCell.swift in Sources */,
@@ -332,6 +340,7 @@
 				49DBFD801E80399000900003 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
