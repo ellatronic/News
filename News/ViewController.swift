@@ -29,29 +29,10 @@ class ViewController: UIViewController {
 
         apiManager.getArticles(for: "techcrunch", and: "top", completion: { newsArticles in
             self.newsArticles = newsArticles
-            loadImage(atURL: newsArticles.first?.imageURL)
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
             }
-
-//            let url = URL(string: (giphys.first?.imageURL)!)
-//
-//            DispatchQueue.global().async {
-//                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-//                DispatchQueue.main.async {
-//                    self.giphyImageView.image = UIImage(data: data!)
-//                }
-
         })
-    }
-
-    func loadImage(atURL url: URL) -> UIImage? {
-
-        if let data = try? Data(contentsOf: url) {
-            return UIImage(data: data)
-        }
-
-        return nil
     }
 }
 
@@ -74,31 +55,24 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
 
-        guard let oneImageCell = tableView.dequeueReusableCell(withIdentifier: "OneImageCell", for: indexPath) as? OneImageCell else {
-            return UITableViewCell()
+        if row == 0 {
+            guard let oneImageCell = tableView.dequeueReusableCell(withIdentifier: "OneImageCell", for: indexPath) as? OneImageCell else {
+                return UITableViewCell()
+            }
+            oneImageCell.titleLabel.text = "\(newsArticles[row].title)"
+            oneImageCell.articleImageView.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
+
+            return oneImageCell
+        } else {
+            guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
+                return UITableViewCell()
+            }
+            sidewaysCell.topTitleLabel.text = "\(newsArticles[row].title)"
+            sidewaysCell.topArticleImage.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
+            return sidewaysCell
         }
-        oneImageCell.titleLabel.text = "\(newsArticles[row].title)"
-//        oneImageCell.imageView?.image = UIImage(named: <#T##String#>)
-
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        //
-        //        cell.textLabel?.text = "\(array[indexPath.row])"
-        //
-        return oneImageCell
-
-        //        if indexPath.section == 1 {
-        //            guard let twoImageCell = tableView.dequeueReusableCell(withIdentifier: "TwoImageCell", for: indexPath) as? TwoImageCell else {
-        //                return UITableViewCell()
-        //            }
-        //            return twoImageCell
-        //        } else {
-        //            guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
-        //                return UITableViewCell()
-        //            }
-        //            return sidewaysCell
-        //        }
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }

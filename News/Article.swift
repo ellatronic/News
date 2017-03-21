@@ -38,13 +38,11 @@ class Article {
         return Article(author: author, title: title, articleURL: articleURL, imageURL: imageURL)
     }
 
-    //        guard let url = URL(string: imageURL) else { return }
-    //        let task = URLSession.shared.dataTask(with: url) { (data, response, error)  in
-    //            guard error == nil, let data = data else { return }
-    //
-    //            if let image = UIImage(data: data) {
-    //                self.image = image
-    //            }
-    //        }
-    //        task.resume()
+    func convertStringToURLToImage(from string: String) -> UIImage? {
+        let url = URL(string: string)
+        if let data = try? Data(contentsOf: url!) {
+            return UIImage(data: data)
+        }
+        return nil
+    }
 }
