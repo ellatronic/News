@@ -12,11 +12,13 @@ import WebKit
 class ArticleViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
 
+    var article: Article!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         webView.delegate = self
-        if let url = URL(string: "http://apple.com") {
+        if let url = URL(string: article.articleURL) {
             let request = URLRequest(url: url)
             webView.loadRequest(request)
         }

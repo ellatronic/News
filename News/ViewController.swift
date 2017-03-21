@@ -34,6 +34,26 @@ class ViewController: UIViewController {
             }
         })
     }
+
+    // MARK: - IBActions
+    @IBAction func pressedTopButton(_ sender: UIButton) {
+        print("top pressed")
+        apiManager.getArticles(for: "techcrunch", and: "top", completion: { newsArticles in
+            self.newsArticles = newsArticles
+            DispatchQueue.main.async {
+                self.newsTableView.reloadData()
+            }
+        })
+    }
+    @IBAction func pressedLatestButton(_ sender: UIButton) {
+        print("latest pressed")
+        apiManager.getArticles(for: "techcrunch", and: "latest", completion: { newsArticles in
+            self.newsArticles = newsArticles
+            DispatchQueue.main.async {
+                self.newsTableView.reloadData()
+            }
+        })
+    }
 }
 
 // MARK: - Table View Data Source
@@ -44,12 +64,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArticles.count
-        //        return 1
-        //        if section == 0 {
-        //            return 1
-        //        } else {
-        //            return 2
-        //        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,6 +74,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             oneImageCell.titleLabel.text = "\(newsArticles[row].title)"
+            oneImageCell.authorLabel.text = "\(newsArticles[row].author)"
             oneImageCell.articleImageView.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
 
             return oneImageCell
@@ -68,6 +83,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             sidewaysCell.topTitleLabel.text = "\(newsArticles[row].title)"
+            sidewaysCell.authorLabel.text = "\(newsArticles[row].author)"
             sidewaysCell.topArticleImage.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
             return sidewaysCell
         }
@@ -76,5 +92,21 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-    
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        go(toArticle: newsArticles[indexPath.row])
+    }
+
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let articleViewController = segue.destination as? ArticleViewController else { return }
+        if let theArticle = sender as? Article {
+            articleViewController.article = theArticle
+        }
+    }
+
+    // MARK: - Helper Functions
+    func go(toArticle article: Article) {
+        self.performSegue(withIdentifier: "toArticle", sender: article)
+    }
 }

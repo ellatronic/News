@@ -11,8 +11,8 @@ import UIKit
 class SidewaysCell: UITableViewCell {
     @IBOutlet weak var sidewaysInnerView: UIView!
     @IBOutlet weak var topArticleImage: UIImageView!
-    @IBOutlet weak var topSourceLabel: UILabel!
     @IBOutlet weak var topTitleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

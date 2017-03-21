@@ -16,13 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="115.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQR-IL-KFv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="115.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r00-QH-5q7">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r00-QH-5q7">
                                 <rect key="frame" x="212" y="8" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="r00-QH-5q7" secondAttribute="height" multiplier="1:1" id="5Qu-s6-LFC"/>
@@ -30,10 +30,16 @@
                                     <constraint firstAttribute="width" constant="100" id="r8Y-uv-9QG"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74P-Ly-nOb">
-                                <rect key="frame" x="8" y="8" width="196" height="99"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74P-Ly-nOb">
+                                <rect key="frame" x="8" y="8" width="196" height="75"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AP0-De-Ble">
+                                <rect key="frame" x="8" y="91" width="196" height="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="13"/>
+                                <color key="textColor" red="0.69803921570000005" green="0.79607843140000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -42,10 +48,13 @@
                             <constraint firstAttribute="trailing" secondItem="r00-QH-5q7" secondAttribute="trailing" constant="8" id="BGV-il-PQc"/>
                             <constraint firstItem="r00-QH-5q7" firstAttribute="top" secondItem="xQR-IL-KFv" secondAttribute="top" constant="8" id="Erm-Vl-uS2"/>
                             <constraint firstItem="74P-Ly-nOb" firstAttribute="leading" secondItem="xQR-IL-KFv" secondAttribute="leading" constant="8" id="IgP-9E-5vH"/>
+                            <constraint firstItem="AP0-De-Ble" firstAttribute="leading" secondItem="xQR-IL-KFv" secondAttribute="leading" constant="8" id="KRe-h1-1Zt"/>
                             <constraint firstItem="74P-Ly-nOb" firstAttribute="top" secondItem="xQR-IL-KFv" secondAttribute="top" constant="8" id="Wtm-Km-SnY"/>
                             <constraint firstItem="r00-QH-5q7" firstAttribute="leading" secondItem="74P-Ly-nOb" secondAttribute="trailing" constant="8" id="bCm-YH-rMK"/>
+                            <constraint firstItem="AP0-De-Ble" firstAttribute="width" secondItem="74P-Ly-nOb" secondAttribute="width" id="ejI-e0-Dpw"/>
                             <constraint firstAttribute="bottom" secondItem="r00-QH-5q7" secondAttribute="bottom" constant="8" id="iVP-Cv-eIO"/>
-                            <constraint firstAttribute="bottom" secondItem="74P-Ly-nOb" secondAttribute="bottom" constant="8" id="rO4-v0-nMM"/>
+                            <constraint firstItem="AP0-De-Ble" firstAttribute="top" secondItem="74P-Ly-nOb" secondAttribute="bottom" constant="8" id="n7j-4u-Nfc"/>
+                            <constraint firstAttribute="bottom" secondItem="AP0-De-Ble" secondAttribute="bottom" constant="6.5" id="oiY-6b-Wby"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -57,6 +66,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="authorLabel" destination="AP0-De-Ble" id="Rlr-rk-6J1"/>
                 <outlet property="sidewaysInnerView" destination="xQR-IL-KFv" id="IJU-cR-vre"/>
                 <outlet property="topArticleImage" destination="r00-QH-5q7" id="dNq-hA-lFW"/>
                 <outlet property="topTitleLabel" destination="74P-Ly-nOb" id="B79-TU-gsU"/>

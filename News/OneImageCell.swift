@@ -12,7 +12,7 @@ class OneImageCell: UITableViewCell {
     @IBOutlet weak var innerCellView: UIView!
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
