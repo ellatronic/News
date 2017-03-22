@@ -21,7 +21,6 @@ class ViewController: UIViewController {
 
         // Register all the cells
         newsTableView.register(UINib(nibName: "OneImageCell", bundle: nil), forCellReuseIdentifier: "OneImageCell")
-        newsTableView.register(UINib(nibName: "TwoImageCell", bundle: nil), forCellReuseIdentifier: "TwoImageCell")
         newsTableView.register(UINib(nibName: "SidewaysCell", bundle: nil), forCellReuseIdentifier: "SidewaysCell")
 
         // Configure table view cell row height
@@ -77,6 +76,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             oneImageCell.articleImageView.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
 
             return oneImageCell
+        } else if row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellForCollectionView",
+                                                     for: indexPath)
+            
+            return cell
         } else {
             guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
                 return UITableViewCell()
@@ -90,6 +94,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? CellForCollectionViewTableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -108,5 +117,19 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: - Helper Functions
     func go(toArticle article: Article) {
         self.performSegue(withIdentifier: "toArticle", sender: article)
+    }
+}
+
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return newsArticles.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
+        cell.backgroundColor = .black
+//        cell.backgroundColor = model[collectionView.tag][indexPath.item]
+        return cell
+
     }
 }
