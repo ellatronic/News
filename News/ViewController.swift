@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         // Configure table view cell row height
         newsTableView.rowHeight = UITableViewAutomaticDimension
 
+
         apiManager.getArticles(for: "techcrunch", and: "top", completion: { newsArticles in
             self.newsArticles = newsArticles
             DispatchQueue.main.async {
@@ -37,7 +38,6 @@ class ViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func pressedTopButton(_ sender: UIButton) {
-        print("top pressed")
         apiManager.getArticles(for: "techcrunch", and: "top", completion: { newsArticles in
             self.newsArticles = newsArticles
             DispatchQueue.main.async {
@@ -46,7 +46,6 @@ class ViewController: UIViewController {
         })
     }
     @IBAction func pressedLatestButton(_ sender: UIButton) {
-        print("latest pressed")
         apiManager.getArticles(for: "techcrunch", and: "latest", completion: { newsArticles in
             self.newsArticles = newsArticles
             DispatchQueue.main.async {
@@ -95,6 +94,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         go(toArticle: newsArticles[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // MARK: - Segue

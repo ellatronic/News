@@ -17,6 +17,8 @@ class SidewaysCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        topArticleImage.layer.cornerRadius = 5.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
