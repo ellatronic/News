@@ -34,7 +34,7 @@ class ViewController: UIViewController {
                 self.newsTableView.reloadData()
             }
         })
-        apiManager.getArticles(for: "wired-ed", and: "top", completion: { newsArticles in
+        apiManager.getArticles(for: "wired-de", and: "top", completion: { newsArticles in
             self.collectionArticles = newsArticles
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
@@ -58,6 +58,15 @@ class ViewController: UIViewController {
                 self.newsTableView.reloadData()
             }
         })
+    }
+
+    // MARK: - Helper Functions
+    func go(toArticle article: Article) {
+        self.performSegue(withIdentifier: "toArticle", sender: article)
+    }
+
+    func loadArticles(forSource: String, andCategory: String, inArray: [Article]) {
+        
     }
 }
 
@@ -119,11 +128,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             articleViewController.article = theArticle
         }
     }
-
-    // MARK: - Helper Functions
-    func go(toArticle article: Article) {
-        self.performSegue(withIdentifier: "toArticle", sender: article)
-    }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -135,8 +139,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let row = indexPath.row
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .black
         cell.articleImageView.image = collectionArticles[row].convertStringToURLToImage(from: collectionArticles[row].imageURL)
+        cell.collectionLabel.text = collectionArticles[row].title
         return cell
 
     }
