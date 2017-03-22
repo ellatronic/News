@@ -77,19 +77,19 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
+        let article = newsArticles[row]
 
         if row == 0 {
             guard let oneImageCell = tableView.dequeueReusableCell(withIdentifier: "OneImageCell", for: indexPath) as? OneImageCell else {
                 return UITableViewCell()
             }
-            oneImageCell.titleLabel.text = "\(newsArticles[row].title)"
-            oneImageCell.authorLabel.text = "\(newsArticles[row].author)"
-            oneImageCell.articleImageView.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
+            oneImageCell.titleLabel.text = article.title
+            oneImageCell.authorLabel.text = article.author
+            oneImageCell.articleImageView.image = article.convertStringToURLToImage(from: article.imageURL)
 
             return oneImageCell
         } else if row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CellForCollectionView",
-                                                     for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellForCollectionView", for: indexPath)
             return cell
         } else {
             guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
@@ -125,6 +125,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - Collection View
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionArticles.count
