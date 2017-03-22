@@ -15,6 +15,7 @@ class ViewController: UIViewController {
 
     var newsArticles = [Article]()
     let apiManager = APIManager()
+    var collectionArticles = [Article]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,12 @@ class ViewController: UIViewController {
 
         apiManager.getArticles(for: "techcrunch", and: "top", completion: { newsArticles in
             self.newsArticles = newsArticles
+            DispatchQueue.main.async {
+                self.newsTableView.reloadData()
+            }
+        })
+        apiManager.getArticles(for: "wired-ed", and: "top", completion: { newsArticles in
+            self.collectionArticles = newsArticles
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
             }
@@ -79,7 +86,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         } else if row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellForCollectionView",
                                                      for: indexPath)
-            
             return cell
         } else {
             guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
@@ -122,13 +128,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return newsArticles.count
+        return collectionArticles.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let row = indexPath.row
+
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         cell.backgroundColor = .black
-//        cell.backgroundColor = model[collectionView.tag][indexPath.item]
+        cell.articleImageView.image = collectionArticles[row].convertStringToURLToImage(from: collectionArticles[row].imageURL)
         return cell
 
     }
