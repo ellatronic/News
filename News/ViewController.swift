@@ -15,6 +15,7 @@ class ViewController: UIViewController {
 
     var newsArticles = [Article]()
     let apiManager = APIManager()
+    var collectionArticles = [Article]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,27 +27,37 @@ class ViewController: UIViewController {
         // Configure table view cell row height
         newsTableView.rowHeight = UITableViewAutomaticDimension
 
-
-        apiManager.getArticles(for: "techcrunch", and: "top", completion: { newsArticles in
-            self.newsArticles = newsArticles
-            DispatchQueue.main.async {
-                self.newsTableView.reloadData()
-            }
-        })
+        loadNewsArticles(for: "techcrunch", and: "top")
+        loadCollectionArticles(for: "the-verge", and: "top")
     }
 
     // MARK: - IBActions
     @IBAction func pressedTopButton(_ sender: UIButton) {
-        apiManager.getArticles(for: "techcrunch", and: "top", completion: { newsArticles in
+        loadNewsArticles(for: "techcrunch", and: "top")
+        loadCollectionArticles(for: "the-verge", and: "top")
+    }
+    @IBAction func pressedLatestButton(_ sender: UIButton) {
+        loadNewsArticles(for: "techcrunch", and: "latest")
+        loadCollectionArticles(for: "the-verge", and: "latest")
+    }
+
+    // MARK: - Helper Functions
+    func go(toArticle article: Article) {
+        self.performSegue(withIdentifier: "toArticle", sender: article)
+    }
+
+    func loadNewsArticles(for source: String, and category: String) {
+        apiManager.getArticles(for: source, and: category, completion: { newsArticles in
             self.newsArticles = newsArticles
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
             }
         })
     }
-    @IBAction func pressedLatestButton(_ sender: UIButton) {
-        apiManager.getArticles(for: "techcrunch", and: "latest", completion: { newsArticles in
-            self.newsArticles = newsArticles
+
+    func loadCollectionArticles(for source: String, and category: String) {
+        apiManager.getArticles(for: source, and: category, completion: { newsArticles in
+            self.collectionArticles = newsArticles
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
             }
@@ -66,16 +77,20 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
+        let article = newsArticles[row]
 
         if row == 0 {
             guard let oneImageCell = tableView.dequeueReusableCell(withIdentifier: "OneImageCell", for: indexPath) as? OneImageCell else {
                 return UITableViewCell()
             }
-            oneImageCell.titleLabel.text = "\(newsArticles[row].title)"
-            oneImageCell.authorLabel.text = "\(newsArticles[row].author)"
-            oneImageCell.articleImageView.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
+            oneImageCell.titleLabel.text = article.title
+            oneImageCell.authorLabel.text = article.author
+            oneImageCell.articleImageView.image = article.convertStringToURLToImage(from: article.imageURL)
 
             return oneImageCell
+        } else if row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellForCollectionView", for: indexPath)
+            return cell
         } else {
             guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
                 return UITableViewCell()
@@ -91,6 +106,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return 200
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? CellForCollectionViewTableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         go(toArticle: newsArticles[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
@@ -103,9 +123,25 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             articleViewController.article = theArticle
         }
     }
+}
 
-    // MARK: - Helper Functions
-    func go(toArticle article: Article) {
-        self.performSegue(withIdentifier: "toArticle", sender: article)
+// MARK: - Collection View
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionArticles.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let row = collectionArticles[indexPath.row]
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
+        cell.articleImageView.image = row.convertStringToURLToImage(from: row.imageURL)
+        cell.collectionLabel.text = row.title
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        go(toArticle: collectionArticles[indexPath.row])
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
