@@ -12,10 +12,14 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var topStoriesLabel: UILabel!
     @IBOutlet weak var newsTableView: UITableView!
+    @IBOutlet weak var topButton: UIButton!
+    @IBOutlet weak var latestButton: UIButton!
 
     var newsArticles = [Article]()
     let apiManager = APIManager()
     var collectionArticles = [Article]()
+    var techSources = Sources()
+//    let techSources = ["techcrunch", "the-verge", "ars-technica", "engadget", "hacker-news", "techradar"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +57,14 @@ class ViewController: UIViewController {
                 self.newsTableView.reloadData()
             }
         })
+//        for i in 0..<sources.count {
+//            apiManager.getArticles(for: sources[i], and: category, completion: { newsArticles in
+//                self.newsArticles += newsArticles
+//                DispatchQueue.main.async {
+//                    self.newsTableView.reloadData()
+//                }
+//            })
+//        }
     }
 
     func loadCollectionArticles(for source: String, and category: String) {

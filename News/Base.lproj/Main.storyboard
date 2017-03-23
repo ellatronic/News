@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vwp-Dr-MYl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CTb-Xm-tWd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -114,20 +114,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n83-I2-oXd">
-                                <rect key="frame" x="0.0" y="567" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="569" width="375" height="34"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NpL-Kv-gv5">
-                                        <rect key="frame" x="195" y="0.0" width="179.5" height="36"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
-                                        <state key="normal" title="Latest">
-                                            <color key="titleColor" red="0.26274509800000001" green="0.64705882349999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressedLatestButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f0X-rv-G3l"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2A-6J-R1A">
-                                        <rect key="frame" x="0.0" y="0.0" width="179.5" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Top">
                                             <color key="titleColor" red="0.26274509800000001" green="0.64705882349999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -136,17 +126,27 @@
                                             <action selector="pressedTopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mnc-y3-rl0"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NpL-Kv-gv5">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Latest">
+                                            <color key="titleColor" red="0.26274509800000001" green="0.64705882349999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressedLatestButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f0X-rv-G3l"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="X2A-6J-R1A" firstAttribute="height" secondItem="NpL-Kv-gv5" secondAttribute="height" id="1nY-pl-2NZ"/>
-                                    <constraint firstItem="X2A-6J-R1A" firstAttribute="top" secondItem="n83-I2-oXd" secondAttribute="top" id="ENr-Th-bWt"/>
-                                    <constraint firstAttribute="bottom" secondItem="X2A-6J-R1A" secondAttribute="bottom" id="FGx-by-5be"/>
-                                    <constraint firstItem="X2A-6J-R1A" firstAttribute="width" secondItem="NpL-Kv-gv5" secondAttribute="width" id="Mpz-1y-BH9"/>
-                                    <constraint firstAttribute="trailing" secondItem="NpL-Kv-gv5" secondAttribute="trailing" id="QGt-6B-yKT"/>
-                                    <constraint firstAttribute="bottom" secondItem="NpL-Kv-gv5" secondAttribute="bottom" id="fdG-lf-HWW"/>
-                                    <constraint firstItem="X2A-6J-R1A" firstAttribute="leading" secondItem="n83-I2-oXd" secondAttribute="leading" id="l5R-vl-Ua5"/>
-                                    <constraint firstItem="NpL-Kv-gv5" firstAttribute="leading" secondItem="X2A-6J-R1A" secondAttribute="trailing" constant="15.5" id="phf-90-sYA"/>
+                                    <constraint firstAttribute="bottom" secondItem="NpL-Kv-gv5" secondAttribute="bottom" id="4Z4-s6-Dxo"/>
+                                    <constraint firstItem="X2A-6J-R1A" firstAttribute="top" secondItem="n83-I2-oXd" secondAttribute="top" id="BHP-GL-5Z5"/>
+                                    <constraint firstItem="X2A-6J-R1A" firstAttribute="leading" secondItem="n83-I2-oXd" secondAttribute="leading" id="JKM-f8-YSF"/>
+                                    <constraint firstAttribute="trailing" secondItem="NpL-Kv-gv5" secondAttribute="trailing" id="Jz4-dk-ski"/>
+                                    <constraint firstItem="NpL-Kv-gv5" firstAttribute="top" secondItem="n83-I2-oXd" secondAttribute="top" id="XGQ-pH-dtF"/>
+                                    <constraint firstItem="NpL-Kv-gv5" firstAttribute="height" secondItem="X2A-6J-R1A" secondAttribute="height" id="drM-zk-HAi"/>
+                                    <constraint firstItem="NpL-Kv-gv5" firstAttribute="width" secondItem="X2A-6J-R1A" secondAttribute="width" id="iyx-mU-Ivu"/>
+                                    <constraint firstItem="NpL-Kv-gv5" firstAttribute="leading" secondItem="X2A-6J-R1A" secondAttribute="trailing" id="lCD-ro-W2T"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -156,6 +156,7 @@
                             <constraint firstItem="UiK-fS-Klx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8NP-R3-H5w"/>
                             <constraint firstItem="n83-I2-oXd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UAg-Ar-owO"/>
                             <constraint firstItem="UiK-fS-Klx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Xng-2G-rfp"/>
+                            <constraint firstItem="n83-I2-oXd" firstAttribute="top" secondItem="UiK-fS-Klx" secondAttribute="bottom" id="Y3C-J6-Hmw"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UiK-fS-Klx" secondAttribute="bottom" constant="34" id="iTE-GF-yGB"/>
                             <constraint firstAttribute="trailing" secondItem="n83-I2-oXd" secondAttribute="trailing" id="sla-CR-om6"/>
                             <constraint firstAttribute="bottom" secondItem="n83-I2-oXd" secondAttribute="bottom" id="xnn-XM-ltk"/>
@@ -230,6 +231,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQg-rt-7dI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3752.8000000000002" y="123.68815592203899"/>
+        </scene>
+        <!--Source Collection View Controller-->
+        <scene sceneID="GJE-T1-Qno">
+            <objects>
+                <collectionViewController id="CTb-Xm-tWd" customClass="SourceCollectionViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="lo1-tb-IbC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Azl-A4-LCX">
+                            <size key="itemSize" width="200" height="315"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="10" maxX="8" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SourceCell" id="L3g-Uv-40v" customClass="SourceCollectionViewCell" customModule="News" customModuleProvider="target">
+                                <rect key="frame" x="8" y="10" width="200" height="315"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="315"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P5I-Ll-fXH">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="315"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="315" id="Kga-u8-nX9"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GRADIENT" translatesAutoresizingMaskIntoConstraints="NO" id="1e6-u8-9Gz">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="315"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="315" id="MuV-zR-Tel"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="1e6-u8-9Gz" secondAttribute="bottom" id="6uI-6W-ms0"/>
+                                    <constraint firstItem="P5I-Ll-fXH" firstAttribute="leading" secondItem="L3g-Uv-40v" secondAttribute="leading" id="DxL-bL-rvy"/>
+                                    <constraint firstItem="P5I-Ll-fXH" firstAttribute="top" secondItem="L3g-Uv-40v" secondAttribute="top" id="I3j-pe-Zr3"/>
+                                    <constraint firstItem="1e6-u8-9Gz" firstAttribute="leading" secondItem="L3g-Uv-40v" secondAttribute="leading" id="NP5-tc-Flp"/>
+                                    <constraint firstAttribute="bottom" secondItem="P5I-Ll-fXH" secondAttribute="bottom" id="Qtd-EH-5jZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="1e6-u8-9Gz" secondAttribute="trailing" id="TVo-pb-0xZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="P5I-Ll-fXH" secondAttribute="trailing" id="XXp-er-pIu"/>
+                                    <constraint firstItem="1e6-u8-9Gz" firstAttribute="top" secondItem="L3g-Uv-40v" secondAttribute="top" id="Y2x-sY-MS5"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="gradientImageView" destination="1e6-u8-9Gz" id="nnq-dU-GoO"/>
+                                    <outlet property="sourceImageView" destination="P5I-Ll-fXH" id="nmu-MO-kjH"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="CTb-Xm-tWd" id="w2s-Na-0pO"/>
+                            <outlet property="delegate" destination="CTb-Xm-tWd" id="ZFH-Xl-ayP"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EZl-oH-HyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4134" y="799"/>
         </scene>
     </scenes>
     <resources>
