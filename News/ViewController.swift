@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var newsArticles = [Article]()
     let apiManager = APIManager()
     var collectionArticles = [Article]()
-    var techSources = Sources()
+    var techSources = [Sources]()
 //    let techSources = ["techcrunch", "the-verge", "ars-technica", "engadget", "hacker-news", "techradar"]
 
     override func viewDidLoad() {
