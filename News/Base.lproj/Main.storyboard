@@ -59,6 +59,12 @@
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="ThT-Vs-EXA"/>
                                                                         </constraints>
                                                                     </imageView>
+                                                                    <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GRADIENT" translatesAutoresizingMaskIntoConstraints="NO" id="gSx-Zv-OUC">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="150"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="bAe-hO-t3A"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-aR-AJE">
                                                                         <rect key="frame" x="8" y="94" width="74" height="48"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
@@ -68,14 +74,18 @@
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="bottom" secondItem="OY0-VW-EZS" secondAttribute="bottomMargin" id="9QI-J2-Nnn"/>
+                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="trailing" secondItem="OY0-VW-EZS" secondAttribute="trailingMargin" id="45v-5P-Bul"/>
                                                                 <constraint firstItem="4Nj-6x-gJl" firstAttribute="leading" secondItem="OY0-VW-EZS" secondAttribute="leading" id="CgM-VJ-59n"/>
-                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="leading" secondItem="OY0-VW-EZS" secondAttribute="leadingMargin" id="Th7-Te-aXp"/>
-                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="top" secondItem="OY0-VW-EZS" secondAttribute="topMargin" constant="86" id="ZSX-sz-DxP"/>
-                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="trailing" secondItem="OY0-VW-EZS" secondAttribute="trailingMargin" id="e9z-jh-ngj"/>
+                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="leading" secondItem="OY0-VW-EZS" secondAttribute="leadingMargin" id="KgL-QP-xhK"/>
+                                                                <constraint firstItem="gSx-Zv-OUC" firstAttribute="top" secondItem="OY0-VW-EZS" secondAttribute="top" id="OYt-Tr-rz9"/>
+                                                                <constraint firstItem="gSx-Zv-OUC" firstAttribute="leading" secondItem="OY0-VW-EZS" secondAttribute="leading" id="VcP-M0-vns"/>
+                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="bottom" secondItem="OY0-VW-EZS" secondAttribute="bottomMargin" id="Z43-rJ-VZX"/>
+                                                                <constraint firstAttribute="trailing" secondItem="gSx-Zv-OUC" secondAttribute="trailing" id="dOa-f8-AF3"/>
                                                                 <constraint firstItem="4Nj-6x-gJl" firstAttribute="top" secondItem="OY0-VW-EZS" secondAttribute="top" id="iME-gH-eJP"/>
                                                                 <constraint firstAttribute="bottom" secondItem="4Nj-6x-gJl" secondAttribute="bottom" id="iZD-en-jWl"/>
                                                                 <constraint firstAttribute="trailing" secondItem="4Nj-6x-gJl" secondAttribute="trailing" id="tyc-TY-XBF"/>
+                                                                <constraint firstAttribute="bottom" secondItem="gSx-Zv-OUC" secondAttribute="bottom" id="u6v-gq-zI5"/>
+                                                                <constraint firstItem="KO5-aR-AJE" firstAttribute="top" secondItem="OY0-VW-EZS" secondAttribute="topMargin" constant="86" id="zNT-UO-cJr"/>
                                                             </constraints>
                                                             <size key="customSize" width="90" height="150"/>
                                                             <connections>
@@ -222,4 +232,7 @@
             <point key="canvasLocation" x="3752.8000000000002" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="GRADIENT" width="309" height="290"/>
+    </resources>
 </document>
