@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var newsArticles = [Article]()
     let apiManager = APIManager()
     var collectionArticles = [Article]()
+    var sources = Source.categoryArray
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,36 +70,46 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsArticles.count
+        if section == 0 {
+            return 1
+        } else {
+            return newsArticles.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        let article = newsArticles[row]
-
-        if row == 0 {
-            guard let oneImageCell = tableView.dequeueReusableCell(withIdentifier: "OneImageCell", for: indexPath) as? OneImageCell else {
-                return UITableViewCell()
-            }
-            oneImageCell.titleLabel.text = article.title
-            oneImageCell.authorLabel.text = article.author
-            oneImageCell.articleImageView.image = article.convertStringToURLToImage(from: article.imageURL)
-
-            return oneImageCell
-        } else if row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CellForCollectionView", for: indexPath)
-            return cell
+        if indexPath.section == 0 {
+            guard let categoryCell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as? CategoryTableViewCell else { return UITableViewCell() }
+            categoryCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+            return categoryCell
         } else {
-            guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
-                return UITableViewCell()
+            let row = indexPath.row
+            let article = newsArticles[row]
+
+            if row == 0 {
+                guard let oneImageCell = tableView.dequeueReusableCell(withIdentifier: "OneImageCell", for: indexPath) as? OneImageCell else {
+                    return UITableViewCell()
+                }
+                oneImageCell.titleLabel.text = article.title
+                oneImageCell.authorLabel.text = article.author
+                oneImageCell.articleImageView.image = article.convertStringToURLToImage(from: article.imageURL)
+
+                return oneImageCell
+            } else if row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CellForCollectionView", for: indexPath)
+                return cell
+            } else {
+                guard let sidewaysCell = tableView.dequeueReusableCell(withIdentifier: "SidewaysCell", for: indexPath) as? SidewaysCell else {
+                    return UITableViewCell()
+                }
+                sidewaysCell.topTitleLabel.text = "\(newsArticles[row].title)"
+                sidewaysCell.authorLabel.text = "\(newsArticles[row].author)"
+                sidewaysCell.topArticleImage.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
+                return sidewaysCell
             }
-            sidewaysCell.topTitleLabel.text = "\(newsArticles[row].title)"
-            sidewaysCell.authorLabel.text = "\(newsArticles[row].author)"
-            sidewaysCell.topArticleImage.image = newsArticles[row].convertStringToURLToImage(from: newsArticles[row].imageURL)
-            return sidewaysCell
         }
     }
 
@@ -128,20 +139,37 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Collection View
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionArticles.count
+        if collectionView is MyCustonCollectionView {
+            return collectionArticles.count
+        } else {
+            return sources.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let row = collectionArticles[indexPath.row]
+        if collectionView is MyCustonCollectionView {
+            let row = collectionArticles[indexPath.row]
 
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
-        cell.articleImageView.image = row.convertStringToURLToImage(from: row.imageURL)
-        cell.collectionLabel.text = row.title
-        return cell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
+            cell.articleImageView.image = row.convertStringToURLToImage(from: row.imageURL)
+            cell.collectionLabel.text = row.title
+            return cell
+        }
+        else {
+            guard let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
+            categoryCell.categoryLabel.text = sources[indexPath.row].category
+            return categoryCell
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        go(toArticle: collectionArticles[indexPath.row])
-        collectionView.deselectItem(at: indexPath, animated: true)
+        if collectionView is MyCustonCollectionView {
+            go(toArticle: collectionArticles[indexPath.row])
+            collectionView.deselectItem(at: indexPath, animated: true)
+        } else {
+            
+        }
     }
 }
+
+class MyCustonCollectionView: UICollectionView {}
