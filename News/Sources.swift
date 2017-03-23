@@ -9,6 +9,17 @@
 import Foundation
 
 class Sources {
-    let techSources = ["techcrunch", "the-verge", "ars-technica", "engadget", "hacker-news", "techradar"]
+    let name: String
+    let imageName: String
 
+    // let techSources = ["techcrunch", "the-verge", "ars-technica", "engadget", "hacker-news", "techradar"]
+
+    init(name: String, imageName: String) {
+        self.name = name
+        self.imageName = imageName
+    }
+
+    let sources = [
+        Sources(name: "techcrunch", imageName: "hi")
+    ]
 }
