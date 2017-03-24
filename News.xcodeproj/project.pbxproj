@@ -81,9 +81,7 @@
 				49DBFD6F1E80398F00900003 /* AppDelegate.swift */,
 				49DBFD711E80398F00900003 /* ViewController.swift */,
 				49FF0D331E80E0ED00F0312C /* ArticleViewController.swift */,
-				49FF0D2D1E806EB400F0312C /* APIManager.swift */,
-				49FF0D2F1E806EBC00F0312C /* Article.swift */,
-				49FAE3A81E8479FF006A8372 /* Source.swift */,
+				49FF55D31E858B80005E9F73 /* DataModel */,
 				49DBFD731E80399000900003 /* Main.storyboard */,
 				49DBFD8F1E8040B300900003 /* TableViewCells */,
 				49DBFD761E80399000900003 /* Assets.xcassets */,
@@ -106,6 +104,16 @@
 				49DBFD8C1E80409900900003 /* SidewaysCell.xib */,
 			);
 			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		49FF55D31E858B80005E9F73 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				49FF0D2D1E806EB400F0312C /* APIManager.swift */,
+				49FF0D2F1E806EBC00F0312C /* Article.swift */,
+				49FAE3A81E8479FF006A8372 /* Source.swift */,
+			);
+			name = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
