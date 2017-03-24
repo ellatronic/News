@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             self.newsArticles = newsArticles
             DispatchQueue.main.async {
                 UIView.transition(with: self.newsTableView,
-                                          duration: 0.35,
+                                          duration: 0.30,
                                           options: .transitionCrossDissolve,
                                           animations:
                     { () -> Void in
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
             self.collectionArticles = newsArticles
             DispatchQueue.main.async {
                 UIView.transition(with: self.newsTableView,
-                                  duration: 0.35,
+                                  duration: 0.30,
                                   options: .transitionCrossDissolve,
                                   animations:
                     { () -> Void in
