@@ -15,3 +15,11 @@ A newsfeed app that allows the user to browse through news articles pulled from 
 * Lags a little if the user scrolls very quickly.
 
 ### Screenshots
+App Home Screen
+![App Home Screen](readmeImages/NewsAppHomeScreen.png)
+
+App Article Screen
+![App Article Screen](readmeImages/NewsAppArticleScreen.png)
+
+Notification
+![Notification Permissions](readmeImages/NewsAppNotification.png)
