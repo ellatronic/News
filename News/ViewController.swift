@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     let apiManager = APIManager()
     var collectionArticles = [Article]()
     var sources = Source.categoryArray
+    var currentCategory = 0
+    var topOrLatest = "top"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +30,20 @@ class ViewController: UIViewController {
         // Configure table view cell row height
         newsTableView.rowHeight = UITableViewAutomaticDimension
 
-        loadNewsArticles(for: "techcrunch", and: "top")
-        loadCollectionArticles(for: "the-verge", and: "top")
+        loadNewsArticles(for: sources, sortedBy: "top")
+        loadCollectionArticles(for: sources, sortedBy: "top")
     }
 
     // MARK: - IBActions
     @IBAction func pressedTopButton(_ sender: UIButton) {
-        loadNewsArticles(for: "techcrunch", and: "top")
-        loadCollectionArticles(for: "the-verge", and: "top")
+        loadNewsArticles(for: sources, sortedBy: "top")
+        loadCollectionArticles(for: sources, sortedBy: "top")
+        topOrLatest = "top"
     }
     @IBAction func pressedLatestButton(_ sender: UIButton) {
-        loadNewsArticles(for: "techcrunch", and: "latest")
-        loadCollectionArticles(for: "the-verge", and: "latest")
+        loadNewsArticles(for: sources, sortedBy: "latest")
+        loadCollectionArticles(for: sources, sortedBy: "latest")
+        topOrLatest = "latest"
     }
 
     // MARK: - Helper Functions
@@ -47,8 +51,9 @@ class ViewController: UIViewController {
         self.performSegue(withIdentifier: "toArticle", sender: article)
     }
 
-    func loadNewsArticles(for source: String, and category: String) {
-        apiManager.getArticles(for: source, and: category, completion: { newsArticles in
+    func loadNewsArticles(for category: [Source], sortedBy: String) {
+        let sources = category[currentCategory].sources
+        apiManager.getArticles(for: sources[1], and: sortedBy, completion: { newsArticles in
             self.newsArticles = newsArticles
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
@@ -56,8 +61,9 @@ class ViewController: UIViewController {
         })
     }
 
-    func loadCollectionArticles(for source: String, and category: String) {
-        apiManager.getArticles(for: source, and: category, completion: { newsArticles in
+    func loadCollectionArticles(for category: [Source], sortedBy: String) {
+        let sources = category[currentCategory].sources
+        apiManager.getArticles(for: sources[0], and: sortedBy, completion: { newsArticles in
             self.collectionArticles = newsArticles
             DispatchQueue.main.async {
                 self.newsTableView.reloadData()
@@ -167,7 +173,18 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             go(toArticle: collectionArticles[indexPath.row])
             collectionView.deselectItem(at: indexPath, animated: true)
         } else {
-            
+            let row = indexPath.row
+            switch row {
+            case 0: currentCategory = 0;
+            case 1: currentCategory = 1;
+            case 2: currentCategory = 2;
+            case 3: currentCategory = 3;
+            case 4: currentCategory = 4;
+            default: return
+            }
+            loadNewsArticles(for: sources, sortedBy: topOrLatest)
+            loadCollectionArticles(for: sources, sortedBy: topOrLatest)
+            collectionView.deselectItem(at: indexPath, animated: true)
         }
     }
 }
