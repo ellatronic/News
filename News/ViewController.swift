@@ -173,15 +173,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             go(toArticle: collectionArticles[indexPath.row])
             collectionView.deselectItem(at: indexPath, animated: true)
         } else {
-            let row = indexPath.row
-            switch row {
-            case 0: currentCategory = 0;
-            case 1: currentCategory = 1;
-            case 2: currentCategory = 2;
-            case 3: currentCategory = 3;
-            case 4: currentCategory = 4;
-            default: return
-            }
+            currentCategory = indexPath.row
             loadNewsArticles(for: sources, sortedBy: topOrLatest)
             loadCollectionArticles(for: sources, sortedBy: topOrLatest)
             collectionView.deselectItem(at: indexPath, animated: true)

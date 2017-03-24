@@ -22,6 +22,6 @@ class Source {
         Source(category: "TECHNOLOGY", sources: ["the-verge", "techcrunch", "ars-technica", "engadget", "hacker-news", "techradar"]),
         Source(category: "BUSINESS", sources: ["business-insider", "financial-times", "fortune", "the-economist"]),
         Source(category: "ENTERTAINMENT", sources: ["buzzfeed", "daily-mail", "mashable", "mtv-news"]),
-        Source(category: "SPORT", sources: ["the-sport-bible", "talksport", "sky-sports-news", "nfl-news", "fox-sports"])
+        Source(category: "SPORTS", sources: ["the-sport-bible", "talksport", "sky-sports-news", "nfl-news", "fox-sports"])
     ]
 }
