@@ -7,6 +7,7 @@ A newsfeed app that allows the user to browse through news articles pulled from 
 * Ability to view in both portrait and landscape mode.
 * Notification prompts user to allow/disallow notifications for the app.
 * Uses Auto Layout, table views, collection views, and custom cells.
+* Subtle animation when reloading table view.
 
 ### Issues
 * Prompts user to allow notifications but no notifications are actually available to select.
