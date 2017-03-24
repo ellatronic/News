@@ -12,5 +12,6 @@ A newsfeed app that allows the user to browse through news articles pulled from 
 ### Issues
 * Prompts user to allow notifications but no notifications are actually available to select.
 * Current category does not appear selected.
+* Lags a little if the user scrolls very quickly.
 
 ### Screenshots
