@@ -56,7 +56,14 @@ class ViewController: UIViewController {
         apiManager.getArticles(for: sources[1], and: sortedBy, completion: { newsArticles in
             self.newsArticles = newsArticles
             DispatchQueue.main.async {
-                self.newsTableView.reloadData()
+                UIView.transition(with: self.newsTableView,
+                                          duration: 0.35,
+                                          options: .transitionCrossDissolve,
+                                          animations:
+                    { () -> Void in
+                        self.newsTableView.reloadData()
+                },
+                                          completion: nil);
             }
         })
     }
@@ -66,7 +73,14 @@ class ViewController: UIViewController {
         apiManager.getArticles(for: sources[0], and: sortedBy, completion: { newsArticles in
             self.collectionArticles = newsArticles
             DispatchQueue.main.async {
-                self.newsTableView.reloadData()
+                UIView.transition(with: self.newsTableView,
+                                  duration: 0.35,
+                                  options: .transitionCrossDissolve,
+                                  animations:
+                    { () -> Void in
+                        self.newsTableView.reloadData()
+                },
+                                  completion: nil);
             }
         })
     }
